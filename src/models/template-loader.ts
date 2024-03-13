@@ -17,8 +17,8 @@ class TemplateLoader {
   private constructor(templatePath: String) {
     this._templateMemory = new Map();
     this._compiledTemplateContent = new Map();
-    if (templatePath && templatePath.trim() == "")
-      this.templatePath = <string>process.env["TEMPLATE_PATH"];
+    if (templatePath == "" || (templatePath && templatePath.trim() == ""))
+      this.templatePath = <string>process.env.TEMPLATE_PATH;
     else this.templatePath = <string>templatePath;
   }
 

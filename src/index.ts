@@ -1,9 +1,11 @@
 import { FunctionReturnObj } from "./interfaces";
 import { PDFGenerator, TemplateLoader } from "./models";
+import * as dotenv from "dotenv";
 import helper from "./utility";
+dotenv.config();
 
 function loadAndGenerateFile(
-  templateSource: string,
+  templateSource: string = "",
   fileDestination: string = ".",
   metaData: { [K: string]: any } = {}
 ) {
@@ -41,9 +43,10 @@ function loadAndGenerateFile(
       );
     }
     const result = await helper.safePromise(Promise.all(promiseArray));
-    console.log(result);
+    if (result[0]) console.log("Error in file generation");
+    else console.log(result[1]);
     return;
   });
 }
 
-loadAndGenerateFile("../templates");
+loadAndGenerateFile();
