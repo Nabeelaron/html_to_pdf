@@ -1,6 +1,6 @@
 {
   "name": "template_html_to_pdf",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "package to create pdf from html template",
   "main": "dist/index.js",
   "scripts": {
