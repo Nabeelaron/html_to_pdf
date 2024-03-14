@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 import helper from "./utility";
 dotenv.config();
 
-function loadAndGenerateFile(
+export function loadAndGenerateFile(
   templateSource: string = "",
   fileDestination: string = ".",
   metaData: { [K: string]: any } = {}
@@ -48,5 +48,3 @@ function loadAndGenerateFile(
     return;
   });
 }
-
-loadAndGenerateFile();

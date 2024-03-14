@@ -17,8 +17,11 @@ class TemplateLoader {
   private constructor(templatePath: String) {
     this._templateMemory = new Map();
     this._compiledTemplateContent = new Map();
-    if (templatePath == "" || (templatePath && templatePath.trim() == ""))
-      this.templatePath = <string>process.env.TEMPLATE_PATH;
+    if (
+      (process.env.ENVIRONMENT != "Production" && templatePath == "") ||
+      (templatePath && templatePath.trim() == "")
+    )
+      this.templatePath = <string>process.env.TEMPLATE_PATH || "";
     else this.templatePath = <string>templatePath;
   }
 
@@ -40,7 +43,6 @@ class TemplateLoader {
       responseObj.err = new Error("no template available");
       return responseObj;
     }
-
     data.data.forEach((templateFile: string) => {
       data = fs.readFileSync(
         path.resolve(__dirname, this.templatePath, templateFile),
