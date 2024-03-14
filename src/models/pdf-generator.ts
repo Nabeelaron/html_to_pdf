@@ -77,6 +77,7 @@ class PDFGenerator {
       await this.initializeEngine();
       let page = await this._engine.newPage();
       await page.setContent(htmlObj.htmlContent);
+      htmlObj.fileName = htmlObj.fileName.replace(".html", "");
       await page.pdf({
         path: path.resolve(`${this._outDir}/${htmlObj.fileName}.pdf`),
         format: "A4",
